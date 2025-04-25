@@ -66,7 +66,7 @@ module.exports = class Webhook {
         const waitUntil = body["retry_after"];
 
         setTimeout(() => sendWebhook(this.hookURL, endPayload), waitUntil);
-      } else if (res.status != 204 || res.status != 200) {
+      } else if (res.status != 204 && res.status != 200) {
         throw new Error(
           `Error sending webhook: ${res.status} status code. Response: ${await res.text()}`,
         );
